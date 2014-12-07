@@ -6,7 +6,7 @@
   "bugs": "https://github.com/DaAwesomeP/upb-cli/issues",
   "license": "Apache-2.0",
   "bin": {
-	"upb-cli": "./upb-cli.js"
+	"upb-cli": "upb-cli"
   },
   "man": "./README.md",
   "repository" : {
