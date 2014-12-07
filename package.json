@@ -2,7 +2,7 @@
   "name": "upb-cli",
   "description": "This project provides a CLI interface to the UPB library that generates UPB (Universal Powerline Bus) commands.",
   "keywords": "upb, cli, universal powerline bus, command, line, lighting, switches, control",
-  "homepage:" "https://github.com/DaAwesomeP/upb-cli/",
+  "homepage": "https://github.com/DaAwesomeP/upb-cli/",
   "bugs": "https://github.com/DaAwesomeP/upb-cli/issues",
   "license": "Apache-2.0",
   "bin": {
