@@ -1,0 +1,161 @@
+// upb-cli.js by the DaAwesomeP
+
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//     http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+var defaults = {															// Start Config
+	serial: {																//  Serial Settings - Default PIM Settings
+		baudrate: 4800,
+		databits: 8,
+		parity: 'none',	
+		stopbits: 1,
+		buffersize: 255,
+		parser: "\n",
+		closeAfterSend: true,
+		closeAfterReceive: false
+	},																		//  End Serial Settings																//  End Command Settings
+	response: {
+		debug: false,
+		fullJSON: false,
+		fullJSONstring: false,
+		send: false
+	}
+};																			// End Config
+
+Array.prototype.contains = function(obj) {
+    var i = this.length;
+    while (i--) {
+        if (this[i] === obj) {
+            return true;
+        }
+    }
+    return false;
+}
+
+var program = require('commander'),
+	async = require("async");
+	upb = require("upb");
+var command = upb.defaultCommand;
+
+program
+	//.version(require("./package.json").version)
+	.version("1.0.0")
+	.option('--send', 'Set whether to actually send the command or just to generate it. Defaults to false.')
+	.option('--debug', 'Set whether to output serial information to the console when using --send. Defaults to false.')
+	.option('--json', 'Set whether to respond with the JSON array instead of just the command. Defaults to false.')
+	.option('--jsonStringify', 'Set whether to stringify the JSON array response. Only applies when --json is present. Otherwise ignored. Defaults to false.')
+	.option('-p, --port [port]', 'Set serial port')
+	.option('-o, --source [id (number)]', 'Set PIM source ID. Defaults to 255, which is almost always fine.')
+	.option('-n, --net [id (number)]', 'Set Network ID. Use 0 for the global network (controls all devices).')
+	.option('-i, --id [number]', 'Set link or device ID')
+	.option('-t, --type [link or device]', 'Set whether to control a link or device')
+	.option('-x, --sendx [number]', 'Set the number of times to send the command. Accepts numbers 1 through 4. Defaults to 1.')
+	.option('-s, --sendTime [number]', 'Send the number of time this command is sent out of the total (sendx). NOTE: THE PIM WILL AUTOMATICALLY SEND THE CORRECT NUMBER OF COMMANDS! So, this is only useful for display commands and not sending them. Accepts numbers 1 through 4. Cannot be greater than sendx. Defaults to 1.')
+	.option('--ackPulse', 'Request an acknowledge pulse. Defaults to false.')
+	.option('--idPulse', 'Request an ID pulse. Defaults to false.')
+	.option('--ackMsg', 'Request an acknowledge message. Defaults to false.')
+	.option('-e, --powerlineRepeater [1, 2, 4]', 'Request for the command to go through a powerline repeater. Set or numbers 1, 2, 4, or false. Defaults to false.')
+	.option('-c, --cmd [command]', 'Set the command to send. Options are goto, activate, deactivate, fadeStart, fadeStop, blink, and toggle. You may also use the command numbers associated with those commands.')
+	.option('-l, --level [percent]', 'Set the level. Only applies to goto, fadeStart, fadeStop, and toggle. Accepts values 0 through 100. Otherwise this will be ignored. Required with goto and fade start.')
+	.option('-r, --rate [seconds]', 'Set the fade rate. Use false for instant on. Only applies to goto, fadeStart, and toggle. Otherwise  this will be ignored. Defaults to device settings.')
+	.option('-h, --channel [number]', 'Set the channel to use. Use false for default. Only applies to goto, fadeStart, blink, and toggle. Otherwise this will be ignored. Only works on some devices. Defaults to off (command not sent).')
+	.option('-b, --blinkRate [number]', 'Set the blink rate. USE CAUTION WITH LOW NUMBERS! I\'m not sure what unit this is in. Accepts values 1 through 255. Required for blink. Only applies to blink. Otherwise this will be ignored.')
+	.option('-g, --toggleCount [number]', 'Set the toggle count. Only applies to toggle. Otherwise this will be ignored. Required for toggle.')
+	.option('-a, --toggleRate [seconds]', 'Set the toggle rate. Only applies to toggle. Otherwise this will be ignored. Defaults to 0.5.')
+	.parse(process.argv);
+if (program.send) { defaults.response.send = true; }
+if (program.send && !program.port) { throw "No serial port specified! Use -p or --port [port]." } else { defaults.serial.port = program.port; }
+if (program.debug) { defaults.response.debug = true; }
+if (program.json) { defaults.response.fullJSON = true; }
+if (program.jsonStringify) { defaults.response.fullJSONstring = true; }
+if (program.source) { command.source = program.source; }
+if (program.net) { command.network = program.net; }
+if (program.id) { command.id = program.id; }
+if (program.type) { command.type = program.type; }
+if (program.sendx) { command.sendx = program.sendx; }
+if (program.sendTime) { command.sendTime = program.sendTime; }
+if (program.ackPulse) { command.ackPulse = true; }
+if (program.ackMsg) { command.ackMsg = true; }
+if (program.idPulse) { command.idPulse = true; }
+if (program.powerlineRepeater) { command.powerlineRepeater = program.powerlineRepeater; }
+if (program.cmd) { command.cmd = program.cmd; }
+if (program.level) { command.level = program.level; }
+if (program.rate) { command.rate = program.rate; }
+if (program.channel) { command.channel = program.channel; }
+if (program.blinkRate) { command.blinkRate = program.blinkRate; }
+if (program.toggleCount) { command.toggleCount = program.toggleCount; }
+if (program.toggleRate) { command.toggleRate = program.toggleRate; }
+
+function consoleDebug(msg) {
+	if (defaults.response.debug == true) {
+		console.log(msg);
+	}
+}
+
+
+upb.generate(command, function(commandNew, err) {
+	if (err) throw err;
+	if (defaults.response.fullJSON == false) { console.log(commandNew.generated); }
+	else if (defaults.response.fullJSON == true && defaults.response.fullJSONstring == true) { console.log(JSON.stringify(commandNew)); }
+	else if (defaults.response.fullJSON == true) { console.log(commandNew); }
+	if (defaults.response.send == true) {
+		var serialport = require("serialport");
+		var SerialPort = serialport.SerialPort;
+		var pim = new SerialPort(defaults.serial.port, {
+			baudrate: defaults.serial.baudrate,
+			databits: defaults.serial.databits,
+			parity: defaults.serial.parity,
+			stopbits: defaults.serial.stopbits,
+			buffersize: defaults.serial.buffersize,
+			parser: serialport.parsers.readline(defaults.serial.parser)
+		}, false); // Do not automatically open port
+		
+		pim.open(function (err) {
+			if (err) throw err;
+			consoleDebug('');
+			consoleDebug('');
+			consoleDebug('Serial Port Opened');
+			pim.on('data', function(data) {
+				consoleDebug('data received: ' + data);
+				if (defaults.serial.closeAfterReceive == true) {
+					pim.close(function (err) {
+						if (err) throw err;
+						consoleDebug('closed');
+					});
+				}
+			});
+			pim.write(String.fromCharCode(23) + "70028E" + String.fromCharCode(13), function(err, results) {				// Put PIM in message mode
+				if (err) throw err;
+				consoleDebug('');
+				consoleDebug('Serial write RAW: ' + String.fromCharCode(23) + "70028E" + String.fromCharCode(13));
+				consoleDebug('Serial write encoded: ' + "70028E");
+				consoleDebug('Serial results: ' + results);
+				consoleDebug('');
+				pim.write(String.fromCharCode(20) + commandNew.generated + String.fromCharCode(13), function(err, results) {
+					if (err) throw err;
+					consoleDebug('Serial write RAW: ' + String.fromCharCode(20) + commandNew.generated + String.fromCharCode(13));
+					consoleDebug('Serial write encoded: ' + commandNew.generated);
+					consoleDebug('Serial results: ' + results);
+					consoleDebug('');
+					if (err) throw err;
+					if (defaults.serial.closeAfterSend == true) {
+						pim.close(function (err) {
+							if (err) throw err;
+							consoleDebug('Serial Port Closed');
+						});
+					}
+				});
+			});
+		});
+	}
+});
+

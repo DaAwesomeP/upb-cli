@@ -1,0 +1,29 @@
+{
+  "name": "upb-cli",
+  "description": "This project provides a CLI interface to the UPB library that generates UPB (Universal Powerline Bus) commands.",
+  "keywords": "upb, cli, universal powerline bus, command, line, lighting, switches, control",
+  "homepage:" "https://github.com/DaAwesomeP/upb-cli/",
+  "bugs": "https://github.com/DaAwesomeP/upb-cli/issues",
+  "license": "Apache-2.0",
+  "bin": {
+	"upb-cli": "./upb-cli.js"
+  },
+  "man": "./README.md",
+  "repository" : {
+	"type" : "git",
+	"url" : "https://github.com/DaAwesomeP/upb-cli.git"
+  },
+  "version": "1.0.0",
+  "author": [
+    {
+      "name": "DaAwesomeP",
+      "url": "https://daawesomep.guthub.io/"
+    }
+  ],
+  "dependencies": {
+    "async": "0.9.*",
+	"commander": "2.5.*",
+    "serialport": "1.4.*",
+    "upb": "1.0.*"
+  }
+}

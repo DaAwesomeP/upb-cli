@@ -1,0 +1,3 @@
+# Exclude the installed libraries. They are platform specific.
+node_modules
+npm-debug.log
