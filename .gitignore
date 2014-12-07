@@ -1,3 +1,11 @@
 # Exclude the installed libraries. They are platform specific.
 node_modules/
 npm-debug.log
+.*.swp._*
+.DS_Store
+.git
+.hg
+.lock-wscript
+.svn
+.wafpickle-*
+CVS
