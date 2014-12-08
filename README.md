@@ -1,6 +1,7 @@
 ﻿upb-cli
 =======
 ---
+[![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/DaAwesomeP/upb-cli?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 A CLI interface to the UPB library that generates (and will soon decode) UPB (Universal Powerline Bus) commands. **If you are looking for the NodeJS library version of this, then please see [upb-cli](https://github.com/DaAwesomeP/node-upb/).**
 
 **This has only been tested with Simply Automated switches!** While probably won't harm your device (it is sending control commands, not core commands), I'm not sure what will happen when this is used with other branded switches (like PCS).
