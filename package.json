@@ -8,7 +8,6 @@
   "bin": {
 	"upb-cli": "upb-cli"
   },
-  "man": "./README.md",
   "repository" : {
 	"type" : "git",
 	"url" : "https://github.com/DaAwesomeP/upb-cli.git"
