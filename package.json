@@ -6,13 +6,13 @@
   "bugs": "https://github.com/DaAwesomeP/upb-cli/issues",
   "license": "Apache-2.0",
   "bin": {
-	"upb-cli": "upb-cli"
+    "upb-cli": "upb-cli"
   },
-  "repository" : {
-	"type" : "git",
-	"url" : "https://github.com/DaAwesomeP/upb-cli.git"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/DaAwesomeP/upb-cli.git"
   },
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": [
     {
       "name": "DaAwesomeP",
@@ -21,7 +21,7 @@
   ],
   "dependencies": {
     "async": "0.9.*",
-	"commander": "2.5.*",
+    "commander": "2.5.*",
     "serialport": "1.4.*",
     "upb": "1.0.*"
   }
