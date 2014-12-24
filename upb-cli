@@ -134,27 +134,18 @@ upb.generate(command, function(commandNew, err) {
 					});
 				}
 			});
-			pim.write(String.fromCharCode(23) + "70028E" + String.fromCharCode(13), function(err, results) {				// Put PIM in message mode
+			pim.write(String.fromCharCode(20) + commandNew.generated + String.fromCharCode(13), function(err, results) {
 				if (err) throw err;
-				consoleDebug('');
-				consoleDebug('Serial write RAW: ' + String.fromCharCode(23) + "70028E" + String.fromCharCode(13));
-				consoleDebug('Serial write encoded: ' + "70028E");
+				consoleDebug('Serial write RAW: ' + String.fromCharCode(20) + commandNew.generated + String.fromCharCode(13));
+				consoleDebug('Serial write encoded: ' + commandNew.generated);
 				consoleDebug('Serial results: ' + results);
 				consoleDebug('');
-				pim.write(String.fromCharCode(20) + commandNew.generated + String.fromCharCode(13), function(err, results) {
-					if (err) throw err;
-					consoleDebug('Serial write RAW: ' + String.fromCharCode(20) + commandNew.generated + String.fromCharCode(13));
-					consoleDebug('Serial write encoded: ' + commandNew.generated);
-					consoleDebug('Serial results: ' + results);
-					consoleDebug('');
-					if (err) throw err;
-					if (defaults.serial.closeAfterSend == true) {
-						pim.close(function (err) {
-							if (err) throw err;
-							consoleDebug('Serial Port Closed');
-						});
-					}
-				});
+				if (defaults.serial.closeAfterSend == true) {
+					pim.close(function (err) {
+						if (err) throw err;
+						consoleDebug('Serial Port Closed');
+					});
+				}
 			});
 		});
 	}
