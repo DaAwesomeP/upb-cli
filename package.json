@@ -21,7 +21,7 @@
   ],
   "dependencies": {
     "async": "0.9.*",
-    "commander": "2.5.*",
+    "commander": "2.6.*",
     "serialport": "1.4.*",
     "upb": "1.0.*"
   }

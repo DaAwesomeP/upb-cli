@@ -55,7 +55,7 @@ $ upb-cli --help
     -l, --level [percent]              Set the level. Only applies to goto, fadeStart, fadeStop, and toggle. Accepts values 0 through 100. Otherwise this will be ignored. Required with goto and fade start.
     -r, --rate [seconds]               Set the fade rate. Use false for instant on. Only applies to goto, fadeStart, and toggle. Otherwise  this will be ignored. Defaults to device settings.
     -h, --channel [number]             Set the channel to use. Use false for default. Only applies to goto, fadeStart, blink, and toggle. Otherwise this will be ignored. Only works on some devices. Defaults to off (command not sent).
-    -b, --blinkRate [number]           Set the blink rate. USE CAUTION WITH LOW NUMBERS! I'm not sure what unit this is in. Accepts values 1 through 255. Required for blink. Only applies to blink. Otherwise this will be ignored.
+    -b, --blinkRate [number]           Set the blink rate. USE CAUTION WITH LOW NUMBERS! I am not sure what unit this is in. Accepts values 1 through 255. Required for blink. Only applies to blink. Otherwise this will be ignored.
     -g, --toggleCount [number]         Set the toggle count. Only applies to toggle. Otherwise this will be ignored. Required for toggle.
     -a, --toggleRate [seconds]         Set the toggle rate. Only applies to toggle. Otherwise this will be ignored. Defaults to 0.5.
 ```

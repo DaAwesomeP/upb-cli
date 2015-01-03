@@ -150,4 +150,3 @@ upb.generate(command, function(commandNew, err) {
 		});
 	}
 });
-
