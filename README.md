@@ -3,7 +3,7 @@
 [![npm](http://img.shields.io/npm/v/upb-cli.svg?style=flat-square)](https://www.npmjs.org/package/upb-cli) [![npm](http://img.shields.io/npm/dm/upb-cli.svg?style=flat-square)](https://www.npmjs.org/package/upb-cli) [![David](https://img.shields.io/david/DaAwesomeP/upb-cli.svg?style=flat-square)](https://david-dm.org/DaAwesomeP/upb-cli) [![npm](http://img.shields.io/npm/l/upb-cli.svg?style=flat-square)](https://github.com/DaAwesomeP/upb-cli/blob/master/LICENSE) [![Gitter chat](https://badges.gitter.im/DaAwesomeP/upb-cli.png?style=flat-square)](https://gitter.im/DaAwesomeP/upb-cli)
 ---
 
-A CLI interface to the UPB library that generates decodes UPB (Universal Powerline Bus) commands. **If you are looking for the NodeJS library version of this, then please see [upb-cli](https://github.com/DaAwesomeP/node-upb/).**
+A CLI interface to the UPB library that generates decodes UPB (Universal Powerline Bus) commands. **If you are looking for the NodeJS library version of this, then please see [node-upb](https://github.com/DaAwesomeP/node-upb/).**
 
 **This has only been tested with Simply Automated switches!** While probably won't harm your device (it is sending control commands, not core commands), I'm not sure what will happen when this is used with other branded switches (like PCS).
 
