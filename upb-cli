@@ -134,7 +134,6 @@ if (command.action == "generate") {
 			pim.open(function (err) {
 				if (err) throw err;
 				consoleDebug('');
-				consoleDebug('');
 				consoleDebug('Serial Port Opened');
 				pim.on('data', function(data) {
 					consoleDebug('data received: ' + data);
@@ -154,6 +153,7 @@ if (command.action == "generate") {
 					if (defaults.serial.closeAfterSend == true) {
 						pim.close(function (err) {
 							if (err) throw err;
+							consoleDebug('');
 							consoleDebug('Serial Port Closed');
 						});
 					}
