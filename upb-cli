@@ -71,7 +71,7 @@ program
 	.option('-c, --cmd [command]', 'Set the command to send. You may also use the command numbers associated with those commands. See --listCommands.')
 	.option('-m, --listCommands', 'Lists all available commands.')
 	.option('-l, --level [percent]', 'Set the level. Only applies to goto, fadeStart, fadeStop, and toggle. Accepts values 0 through 100. Otherwise this will be ignored. Required with goto and fade start.')
-	.option('-r, --rate [seconds]', 'Set the fade rate. Use false for instant on. Only applies to goto, fadeStart, and toggle. Otherwise  this will be ignored. Defaults to device settings.')
+	.option('-r, --rate [seconds]', 'Set the fade rate. Use false for instant on. Only applies to goto, and fadeStart. Otherwise  this will be ignored. Defaults to device settings.')
 	.option('-h, --channel [number]', 'Set the channel to use. Use false for default. Only applies to goto, fadeStart, blink, and toggle. Otherwise this will be ignored. Only works on some devices. Defaults to off (command not sent).')
 	.option('-b, --blinkRate [number]', 'Set the blink rate. USE CAUTION WITH LOW NUMBERS! I am not sure what unit this is in. Accepts values 1 through 255. Required for blink. Only applies to blink. Otherwise this will be ignored.')
 	.option('-g, --toggleCount [number]', 'Set the toggle count. Only applies to toggle. Otherwise this will be ignored. Required for toggle.')
