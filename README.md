@@ -174,5 +174,3 @@ I got most of the information the last three items listed on this Simply Automat
  - **UPB System Description** - This PDF describes all parts of the UPB protocol.
  - **UPB Command Wizard - Software** - This program lets you build commands with a wizard/GUI and see the result. It does not actually send the command, but it is very valuable for understanding the commands without reading too much of the above PDF.
  - **UPB Powerline Interface Module (PIM) - Description** - This PDF contains information about the PIM. It shows serial specifications (4800 baud 8-n-1) and PIM responses. It look me a while to figure out that the PIM always responds with `PE` whenever a command is not prefixed by the #20 character.
-
-![](https://d2weczhvl823v0.cloudfront.net/DaAwesomeP/upb-cli/trend.png)
