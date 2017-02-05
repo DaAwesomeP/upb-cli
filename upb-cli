@@ -52,8 +52,7 @@ var command = upb.defaultCommand;
 command.action = "generate";
 
 program
-	//.version(require("./package.json").version)
-	.version("1.0.0")
+	.version(require("./package.json").version)
 	.option('-e, --generate', 'Generates a UPB command and outputs the command or JSON. Use with all other arguments but --decode and --listCommands. This is on by default (for backwards compatibility with versions 1.0.x) unless --decode or --listCommands are specified.')
 	.option('-d, --decode [command]', 'Decodes a UPB command and outputs JSON. Ignores all other commands but --jsonStringify. Use with all other arguments but generate and listCommands THIS WILL NOT ERVIFY THE CHECKSUM!')
 	.option('--send', 'Set whether to actually send the command or just to generate it. Defaults to false.')
@@ -117,22 +116,21 @@ function consoleDebug(msg) {
 }
 
 if (command.action == "generate") {
-	upb.generate(command, function(commandNew, err) {
-		if (err) throw err;
+	upb.generate(command).then(function(commandNew) {
 		if (defaults.response.fullJSON == false) { console.log(commandNew.generated); }
 		else if (defaults.response.fullJSON == true && defaults.response.fullJSONstring == true) { console.log(JSON.stringify(commandNew)); }
 		else if (defaults.response.fullJSON == true) { console.log(commandNew); }
 		if (defaults.response.send == true) {
 			var serialport = require("serialport");
-			var SerialPort = serialport.SerialPort;
-			var pim = new SerialPort(defaults.serial.port, {
+			var pim = new serialport(defaults.serial.port, {
 				baudrate: defaults.serial.baudrate,
 				databits: defaults.serial.databits,
 				parity: defaults.serial.parity,
 				stopbits: defaults.serial.stopbits,
 				buffersize: defaults.serial.buffersize,
-				parser: serialport.parsers.readline(defaults.serial.parser)
-			}, false); // Do not automatically open port
+				parser: serialport.parsers.readline(defaults.serial.parser),
+        autoOpen: false
+			}); // Do not automatically open port
 			
 			pim.open(function (err) {
 				if (err) throw err;
@@ -163,14 +161,22 @@ if (command.action == "generate") {
 				});
 			});
 		}
-	});
+	}).catch(function (err) {
+    console.error(err);
+  });
 }
 else if (command.action == "decode") {
-	upb.decode(command.generated, function(commandNew, err) {
-		if (err) throw err + "\n" + JSON.stringify(commandNew);
-		if (defaults.response.fullJSONstring == true) { console.log(JSON.stringify(commandNew)); }
-		else { console.log(commandNew); }
-	});
+  if (command.generated === null || command.generated === "" || command.generated === true) {
+    console.error('No command specified!');
+  }
+  else {
+    upb.decode(command.generated).then(function(commandNew) {
+      if (defaults.response.fullJSONstring == true) { console.log(JSON.stringify(commandNew)); }
+      else { console.log(commandNew); }
+    }).catch(function (err) {
+      console.error(err);
+    });
+  }
 }
 else if (command.action == "listCommands") {
 	console.log(upb.validCommands);

@@ -1,6 +1,6 @@
-﻿upb-cli
+﻿upb-cli [![Gitter chat](https://img.shields.io/gitter/room/DaAwesomeP/upb-cli.js.svg?maxAge=2592000&style=flat-square)](https://gitter.im/DaAwesomeP/upb-cli)
 =======
-[![npm](http://img.shields.io/npm/v/upb-cli.svg?style=flat-square)](https://www.npmjs.org/package/upb-cli) [![npm](http://img.shields.io/npm/dm/upb-cli.svg?style=flat-square)](https://www.npmjs.org/package/upb-cli) [![David](https://img.shields.io/david/DaAwesomeP/upb-cli.svg?style=flat-square)](https://david-dm.org/DaAwesomeP/upb-cli) [![npm](http://img.shields.io/npm/l/upb-cli.svg?style=flat-square)](https://github.com/DaAwesomeP/upb-cli/blob/master/LICENSE) [![Gitter chat](https://badges.gitter.im/DaAwesomeP/upb-cli.png?style=flat-square)](https://gitter.im/DaAwesomeP/upb-cli)
+[![npm](http://img.shields.io/npm/v/upb-cli.svg?style=flat-square)](https://www.npmjs.org/package/upb-cli) [![npm](http://img.shields.io/npm/dm/upb-cli.svg?style=flat-square)](https://www.npmjs.org/package/upb-cli) [![David](https://img.shields.io/david/DaAwesomeP/upb-cli.svg?style=flat-square)](https://david-dm.org/DaAwesomeP/upb-cli) [![npm](http://img.shields.io/npm/l/upb-cli.svg?style=flat-square)](https://github.com/DaAwesomeP/upb-cli/blob/master/LICENSE)
 ---
 
 A CLI interface to the UPB library that generates decodes UPB (Universal Powerline Bus) commands. **If you are looking for the NodeJS library version of this, then please see [node-upb](https://github.com/DaAwesomeP/node-upb/).**
@@ -174,7 +174,3 @@ I got most of the information the last three items listed on this Simply Automat
  - **UPB System Description** - This PDF describes all parts of the UPB protocol.
  - **UPB Command Wizard - Software** - This program lets you build commands with a wizard/GUI and see the result. It does not actually send the command, but it is very valuable for understanding the commands without reading too much of the above PDF.
  - **UPB Powerline Interface Module (PIM) - Description** - This PDF contains information about the PIM. It shows serial specifications (4800 baud 8-n-1) and PIM responses. It look me a while to figure out that the PIM always responds with `PE` whenever a command is not prefixed by the #20 character.
-
-
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/DaAwesomeP/upb-cli/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
-
