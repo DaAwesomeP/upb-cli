@@ -1,7 +1,11 @@
-﻿upb-cli [![Gitter chat](https://img.shields.io/gitter/room/DaAwesomeP/upb-cli.js.svg?maxAge=2592000&style=flat-square)](https://gitter.im/DaAwesomeP/upb-cli)
+upb-cli [![Gitter chat](https://img.shields.io/gitter/room/DaAwesomeP/upb-cli.js.svg?maxAge=2592000&style=flat-square)](https://gitter.im/DaAwesomeP/upb-cli)
 =======
 [![npm](http://img.shields.io/npm/v/upb-cli.svg?style=flat-square)](https://www.npmjs.org/package/upb-cli) [![npm](http://img.shields.io/npm/dm/upb-cli.svg?style=flat-square)](https://www.npmjs.org/package/upb-cli) [![David](https://img.shields.io/david/DaAwesomeP/upb-cli.svg?style=flat-square)](https://david-dm.org/DaAwesomeP/upb-cli) [![npm](http://img.shields.io/npm/l/upb-cli.svg?style=flat-square)](https://github.com/DaAwesomeP/upb-cli/blob/master/LICENSE)
 ---
+
+DEPRECATED
+==========
+### Please use the [upb](https://github.com/DaAwesomeP/node-upb) package programmatically instead [(https://github.com/DaAwesomeP/node-upb)](https://github.com/DaAwesomeP/node-upb). This CLI wrapper package is no longer being maintained.
 
 A CLI interface to the UPB library that generates decodes UPB (Universal Powerline Bus) commands. **If you are looking for the NodeJS library version of this, then please see [node-upb](https://github.com/DaAwesomeP/node-upb/).**
 
