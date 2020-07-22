@@ -23,7 +23,7 @@
   "dependencies": {
     "async": "2.1.*",
     "commander": "2.9.*",
-    "serialport": "4.0.*",
+    "serialport": "6.0.0",
     "upb": "2.0.*"
   }
 }
